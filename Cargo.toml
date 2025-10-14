@@ -4,3 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+tokio = { version = "1", features = ["full"] }
+rmcp = { git = "https://github.com/modelcontextprotocol/rust-sdk", features = ["server", "transport-io", "macros"] }
+serde = { version = "1.0", features = ["derive"] }
+schemars = { version = "0.8", features = ["uuid"] }
+anyhow = "1.0"
