@@ -9,5 +9,4 @@ rmcp = { git = "https://github.com/modelcontextprotocol/rust-sdk", features = ["
 serde = { version = "1.0", features = ["derive"] }
 schemars = { version = "0.8", features = ["uuid"] }
 anyhow = "1.0"
-async-trait = "0.1"
 serde_json = "1.0"
