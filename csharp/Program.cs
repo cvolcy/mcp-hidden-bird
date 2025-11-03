@@ -14,7 +14,20 @@ namespace McpHiddenBird
 
             ConfigureSwagger(builder);
             
-            builder.Services.AddMcpServer().WithHttpTransport().WithToolsFromAssembly();
+            builder.Services
+                .AddMcpServer(options =>
+                {
+                    options.ServerInfo = new ()
+                    {
+                        Name = "Hidden Bird - MCP Server",
+                        Version = "1.0.0"
+                    };
+                })
+                .WithHttpTransport(options =>
+                {
+                    options.Stateless = false;
+                })
+                .WithToolsFromAssembly();
 
             var app = builder.Build();
 
@@ -27,8 +40,12 @@ namespace McpHiddenBird
                     config.ConfigObject.TryItOutEnabled = true;
                 });
             }
+            else
+            {
+                app.UseHsts();
+                app.UseHttpsRedirection();
+            }
 
-            app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapMcp("/mcp");
